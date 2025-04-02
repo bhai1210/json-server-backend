@@ -4,10 +4,10 @@ const router = jsonServer.router("db.json"); // ensure path is correct
 const middlewares = jsonServer.defaults();
 const port = 5000;
 
-server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  next();
-});
+
+
+
+
 
 
 
