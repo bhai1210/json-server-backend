@@ -3,23 +3,23 @@ import jsonServer from "json-server";
 const server = jsonServer.create();
 const router = jsonServer.router("db.json");
 const middlewares = jsonServer.defaults();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
-// Apply default middlewares (includes logger, static, CORS, etc.)
+// Default middlewares
 server.use(middlewares);
 
-// Custom CORS setup (you already did this correctly, just make sure it's BEFORE router)
+// CORS setup
 server.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*"); // Or specify your frontend origin for more security
+  res.setHeader("Access-Control-Allow-Origin", "*"); // Or replace * with your frontend URL
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();
 });
 
-// Add router
+// Use the router
 server.use(router);
 
 // Start server
 server.listen(port, () => {
-  console.log(`JSON Server is running on http://localhost:${port}`);
+  console.log(`JSON Server is running on port ${port}`);
 });
